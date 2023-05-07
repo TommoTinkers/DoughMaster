@@ -35,3 +35,6 @@ jobs:
 
     - name: Build the Application
       run: dotnet publish Solution/DoughMaster.sln -o Publish
+
+    - name: Show the published files
+      run: dir D:\a\DoughMaster\DoughMaster\Publish\
