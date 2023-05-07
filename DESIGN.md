@@ -8,6 +8,7 @@ Play progresses through stages which repeat each day.
 
 | Stage   |  Description  |
 |---|---|
+| Office | Start the day here - Decide where to go shopping |
 | Shopping  |  Buying Supplies / Equipment  |
 | Prep | Preparing ingredients for service |
 | Service | Making and selling pizzas to customers |
