@@ -54,10 +54,6 @@ jobs:
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
-    env:
-      Solution_Name: Solution/DoughMaster.sln                         
-      Test_Project_Path: DoughMaster.Core.Tests/DoughMaster.Core.Tests.csproj
-
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -73,8 +69,9 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Display working directory
-      run: pwd
+    - name: Navigate to solution directory
+      run: cd Solution
+
     - name: Execute unit tests
       run: dotnet test
 
