@@ -56,7 +56,7 @@ jobs:
 
     env:
       Solution_Name: Solution/DoughMaster.sln                         
-      Test_Project_Path: Solution/DoughMaster.Core.Tests/DoughMaster.Core.Tests.csproj
+      Test_Project_Path: DoughMaster.Core.Tests/DoughMaster.Core.Tests.csproj
 
     steps:
     - name: Checkout
