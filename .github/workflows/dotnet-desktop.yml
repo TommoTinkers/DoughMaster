@@ -33,3 +33,5 @@ jobs:
     - name: Execute unit tests
       run: dotnet test Solution/DoughMaster.sln
 
+    - name: Build the Application
+      run: dotnet publish Solution/DoughMaster.sln -o Publish
