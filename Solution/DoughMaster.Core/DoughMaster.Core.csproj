@@ -14,4 +14,8 @@
       <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TommoLib.Funky\TommoLib.Funky.csproj" />
+    </ItemGroup>
+
 </Project>

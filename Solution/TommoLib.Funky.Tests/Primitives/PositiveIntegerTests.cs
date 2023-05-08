@@ -96,5 +96,4 @@ public class PositiveIntegerTests
 		INeedAPositiveInteger(1L);
 		INeedAPositiveInteger(1UL);
 	}
-		
 }
