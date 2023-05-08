@@ -1,6 +1,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using TommoLib.Funky.Collections;
+using TommoLib.Funky.Exceptions;
 
 namespace TommoLib.Funky.Tests.Collections;
 
@@ -27,5 +28,21 @@ public class CollectionTests
 		var collection2 = new Collection<int>(elements2);
 
 		collection.Should().NotBe(collection2);
+	}
+
+	[Test]
+	public void Indexer_Equal_To_Length_Or_Greater_Throws_An_Invalid_Collection_Index_Exception([Random(1u, 10000u, 10)] uint numberOfElements)
+	{
+		var elements = Enumerable.Range(0, (int)numberOfElements).Select(_ => Random.Shared.Next());
+		var collection = new Collection<int>(elements);
+
+		var TryAccessInvalidIndex = () =>
+		{
+			var invalidIndex = (uint)Random.Shared.Next((int)collection.Length(), int.MaxValue);
+			_ = collection[invalidIndex];
+		};
+
+		TryAccessInvalidIndex.Should().ThrowExactly<InvalidCollectionIndexException>();
+
 	}
 }

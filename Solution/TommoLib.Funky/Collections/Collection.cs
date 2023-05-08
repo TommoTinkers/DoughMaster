@@ -1,21 +1,28 @@
 using System.Collections.Immutable;
+using TommoLib.Funky.Exceptions;
 
 namespace TommoLib.Funky.Collections;
 
 public sealed class Collection<T> : IEquatable<Collection<T>> where T: IEquatable<T>
 {
-	private readonly ImmutableArray<T> items;
+	public readonly ImmutableArray<T> Items;
 	
 	public Collection(IEnumerable<T> items)
 	{
-		this.items = items.ToImmutableArray();
+		Items = items.ToImmutableArray();
 	}
 
+	public T this[uint i] => i switch
+	{
+		_ when i < Items.Length => Items[(int)i],
+		_ => throw new InvalidCollectionIndexException()
+	};
+	
 	public bool Equals(Collection<T>? other)
 	{
 		return other switch
 		{
-			not null => items.SequenceEqual(other.items),
+			not null => Items.SequenceEqual(other.Items),
 			_ => false
 		};
 	}
@@ -27,7 +34,7 @@ public sealed class Collection<T> : IEquatable<Collection<T>> where T: IEquatabl
 
 	public override int GetHashCode()
 	{
-		return items.Aggregate(0, (accumulator, next) => accumulator + next.GetHashCode());
+		return Items.Aggregate(0, (accumulator, next) => accumulator + next.GetHashCode());
 	}
 
 	public static bool operator ==(Collection<T>? left, Collection<T>? right)

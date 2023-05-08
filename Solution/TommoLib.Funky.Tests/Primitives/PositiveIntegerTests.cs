@@ -1,7 +1,6 @@
 using System.Numerics;
 using FluentAssertions;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using TommoLib.Funky.Exceptions;
 using TommoLib.Funky.Primitives;
 
@@ -81,7 +80,9 @@ public class PositiveIntegerTests
 	{
 		var positiveInteger = new PositiveInteger(value);
 
-		static void INeedABigInteger(BigInteger val) => Assert.Pass();
+		
+		// ReSharper disable once UnusedParameter.Local
+		static void INeedABigInteger(BigInteger _) => Assert.Pass();
 		
 		INeedABigInteger(positiveInteger);
 	}
@@ -89,7 +90,8 @@ public class PositiveIntegerTests
 	[Test]
 	public void Integer_Primtives_Upcast_To_Positive_Integer()
 	{
-		static void INeedAPositiveInteger(PositiveInteger val) => Assert.Pass();
+		// ReSharper disable once UnusedParameter.Local
+		static void INeedAPositiveInteger(PositiveInteger _) => Assert.Pass();
 		
 		INeedAPositiveInteger(1);
 		INeedAPositiveInteger(1u);
