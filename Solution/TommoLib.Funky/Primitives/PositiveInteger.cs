@@ -21,4 +21,6 @@ public sealed record PositiveInteger
 
 		Value = value;
 	}
+
+	public static PositiveInteger operator +(PositiveInteger left, PositiveInteger right) => new PositiveInteger(left.Value + right.Value);
 }

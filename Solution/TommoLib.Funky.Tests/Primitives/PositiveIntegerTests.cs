@@ -64,4 +64,14 @@ public class PositiveIntegerTests
 
 		positiveInteger.Value.Should().Be(value);
 	}
+
+	[Test]
+	public void Adding_Two_Positive_Integers_Gives_Same_Result_As_Adding_The_Two_Inputs([Random(1ul, ulong.MaxValue/2, 10)] ulong leftValue, [Random(1ul, ulong.MaxValue/2, 10)] ulong rightValue)
+	{
+		var expected = leftValue + rightValue;
+
+		var actual = new PositiveInteger(leftValue) + new PositiveInteger(rightValue);
+
+		actual.Value.Should().Be(expected);
+	}
 }
