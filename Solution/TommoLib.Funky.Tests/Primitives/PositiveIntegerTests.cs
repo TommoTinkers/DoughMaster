@@ -1,3 +1,4 @@
+using System.Numerics;
 using FluentAssertions;
 using NUnit.Framework;
 using TommoLib.Funky.Exceptions;
@@ -26,11 +27,41 @@ public class PositiveIntegerTests
 	}
 	
 	[Test]
-	public void Creating_A_Positive_Integer_With_A_Positive_Value_Should_Not_Throw_An_Exception([Random(0ul, ulong.MaxValue, 100)] ulong value)
+	public void Creating_A_Positive_Integer_With_A_Positive_Value_Should_Not_Throw_An_Exception([Random(1ul, ulong.MaxValue, 100)] ulong value)
 	{
 		Action ShouldNotThrow = () => _ = new PositiveInteger(value);
 
 		ShouldNotThrow.Should().NotThrow();
 	}
-	
+
+	[Test]
+	public void Two_Positive_Integers_Created_With_The_Same_Value_Are_Equal([Random(1ul, ulong.MaxValue, 100)] ulong value)
+	{
+		var left = new PositiveInteger(value);
+		var right = new PositiveInteger(value);
+
+		left.Should().Be(right);
+	}
+
+	[Test]
+	public void Two_Positive_Integers_Created_With_Different_Values_Are_Not_Equal([Random(1ul, ulong.MaxValue, 10)] ulong leftValue, [Random(1ul, ulong.MaxValue, 10)] ulong rightValue)
+	{
+		if (leftValue == rightValue)
+		{
+			Assert.Pass();
+		}
+		
+		var left = new PositiveInteger(leftValue);
+		var right = new PositiveInteger(rightValue);
+
+		left.Should().NotBe(right);
+	}
+
+	[Test]
+	public void Value_Should_Be_The_Same_As_The_Value_It_Was_Created_With([Random(1ul, ulong.MaxValue, 100)] ulong value)
+	{
+		var positiveInteger = new PositiveInteger(value);
+
+		positiveInteger.Value.Should().Be(value);
+	}
 }

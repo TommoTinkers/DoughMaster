@@ -5,16 +5,20 @@ namespace TommoLib.Funky.Primitives;
 
 public sealed record PositiveInteger
 {
-	public PositiveInteger(BigInteger Value)
+	public readonly BigInteger Value;
+
+	public PositiveInteger(BigInteger value)
 	{
-		if (Value == 0)
+		if (value == 0)
 		{
 			throw new ZeroPositiveIntegerException();
 		}
 
-		if (Value < 0)
+		if (value < 0)
 		{
-			throw new NegativePositiveIntegerException(Value);
+			throw new NegativePositiveIntegerException(value);
 		}
+
+		Value = value;
 	}
 }
