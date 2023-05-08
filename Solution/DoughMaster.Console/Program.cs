@@ -1,4 +1,9 @@
-﻿Console.WriteLine("Dough Master");
+﻿using DoughMaster.Console.Views;
+
+var view = new MakingPizzaView() as View;
 
 
-Console.ReadKey(true);
+while (true)
+{
+	view = view.Display();
+}
