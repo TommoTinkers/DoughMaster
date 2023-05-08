@@ -23,4 +23,13 @@ public class AccountTests
 		account = account.Post(new IncomeTransaction(value));
 		account.Balance().Sign.Should().BePositive();
 	}
+
+	[Test]
+	public void An_Account_With_A_Single_Expense_Transaction_Has_A_Negative_Balance([Values] IncomeType type,
+		[Random(1ul, ulong.MaxValue, 10)] ulong value)
+	{
+		var account = Account.Empty;
+		account = account.Post(new ExpenseTransaction(value));
+		account.Balance().Sign.Should().BeNegative();
+	}
 }
