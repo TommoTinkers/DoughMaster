@@ -22,6 +22,10 @@ public sealed record PositiveInteger
 		Value = value;
 	}
 
-	public static PositiveInteger operator +(PositiveInteger left, PositiveInteger right) => new PositiveInteger(left.Value + right.Value);
+	public static PositiveInteger operator +(PositiveInteger left, PositiveInteger right) => new(left.Value + right.Value);
 	public static implicit operator BigInteger(PositiveInteger value) => value.Value;
+	public static implicit operator PositiveInteger(int value) => new(new BigInteger(value));
+	public static implicit operator PositiveInteger(uint value) => new(new BigInteger(value));
+	public static implicit operator PositiveInteger(long value) => new(new BigInteger(value));
+	public static implicit operator PositiveInteger(ulong value) => new(new BigInteger(value));
 }

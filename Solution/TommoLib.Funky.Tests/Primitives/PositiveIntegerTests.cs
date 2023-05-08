@@ -85,5 +85,16 @@ public class PositiveIntegerTests
 		
 		INeedABigInteger(positiveInteger);
 	}
+
+	[Test]
+	public void Integer_Primtives_Upcast_To_Positive_Integer()
+	{
+		static void INeedAPositiveInteger(PositiveInteger val) => Assert.Pass();
+		
+		INeedAPositiveInteger(1);
+		INeedAPositiveInteger(1u);
+		INeedAPositiveInteger(1L);
+		INeedAPositiveInteger(1UL);
+	}
 		
 }
