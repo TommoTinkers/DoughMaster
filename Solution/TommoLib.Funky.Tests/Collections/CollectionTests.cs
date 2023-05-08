@@ -9,6 +9,15 @@ namespace TommoLib.Funky.Tests.Collections;
 public class CollectionTests
 {
 	[Test]
+	public void Empty_Collection_Is_Equal_To_A_Collection_Created_With_New()
+	{
+		var left = new Collection<int>(Enumerable.Empty<int>());
+		var right = Collection<int>.Empty;
+
+		left.Should().Be(right);
+	}
+	
+	[Test]
 	public void Two_Collections_With_The_Same_Element_Have_Equality([Random(1u, 100u, 10)] uint numberOfElements)
 	{
 		var elements = Enumerable.Range(0, (int)numberOfElements);

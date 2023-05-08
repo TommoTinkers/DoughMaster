@@ -5,6 +5,8 @@ namespace TommoLib.Funky.Collections;
 
 public sealed class Collection<T> : IEquatable<Collection<T>> where T: IEquatable<T>
 {
+	public static readonly Collection<T> Empty = new(Enumerable.Empty<T>());
+	
 	public readonly ImmutableArray<T> Items;
 	
 	public Collection(IEnumerable<T> items)
@@ -26,7 +28,7 @@ public sealed class Collection<T> : IEquatable<Collection<T>> where T: IEquatabl
 			_ => false
 		};
 	}
-
+	
 	public override bool Equals(object? obj)
 	{
 		return ReferenceEquals(this, obj) || obj is Collection<T> other && Equals(other);
@@ -37,6 +39,7 @@ public sealed class Collection<T> : IEquatable<Collection<T>> where T: IEquatabl
 		return Items.Aggregate(0, (accumulator, next) => accumulator + next.GetHashCode());
 	}
 
+	
 	public static bool operator ==(Collection<T>? left, Collection<T>? right)
 	{
 		return Equals(left, right);

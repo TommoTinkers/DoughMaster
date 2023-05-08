@@ -1,8 +1,8 @@
-//namespace DoughMaster.Core.Money;
+using TommoLib.Funky.Collections;
 
-/*
-public sealed record Account
+namespace DoughMaster.Core.Money;
+
+public sealed record Account(Collection<Transaction> Transactions)
 {
-	public static readonly Account Empty = new();
+	public static readonly Account Empty = new(Collection<Transaction>.Empty);
 }
-*/
