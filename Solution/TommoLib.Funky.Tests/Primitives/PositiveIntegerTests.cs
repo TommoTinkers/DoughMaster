@@ -1,6 +1,7 @@
 using System.Numerics;
 using FluentAssertions;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using TommoLib.Funky.Exceptions;
 using TommoLib.Funky.Primitives;
 
@@ -74,4 +75,15 @@ public class PositiveIntegerTests
 
 		actual.Value.Should().Be(expected);
 	}
+
+	[Test]
+	public void Positive_Integer_Casts_To_BigInteger_Implicitly([Random(1ul, ulong.MaxValue, 100)] ulong value)
+	{
+		var positiveInteger = new PositiveInteger(value);
+
+		static void INeedABigInteger(BigInteger val) => Assert.Pass();
+		
+		INeedABigInteger(positiveInteger);
+	}
+		
 }

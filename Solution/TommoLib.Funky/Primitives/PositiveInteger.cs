@@ -23,4 +23,5 @@ public sealed record PositiveInteger
 	}
 
 	public static PositiveInteger operator +(PositiveInteger left, PositiveInteger right) => new PositiveInteger(left.Value + right.Value);
+	public static implicit operator BigInteger(PositiveInteger value) => value.Value;
 }
